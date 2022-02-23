@@ -1,7 +1,9 @@
+
+
 import random
 import threading
 
-from sqlalchemy import Column, String, Boolean, UnicodeText, Integer, BigInteger
+from sqlalchemy import Column, String, Boolean, UnicodeText, BigInteger
 
 from tg_bot.modules.helper_funcs.msg_types import Types
 from tg_bot.modules.sql import SESSION, BASE
@@ -49,10 +51,10 @@ class Welcome(BASE):
     should_goodbye = Column(Boolean, default=True)
 
     custom_welcome = Column(UnicodeText, default=random.choice(DEFAULT_WELCOME_MESSAGES))
-    welcome_type = Column(Integer, default=Types.TEXT.value)
+    welcome_type = Column(BigInteger, default=Types.TEXT.value)
 
     custom_leave = Column(UnicodeText, default=random.choice(DEFAULT_GOODBYE_MESSAGES))
-    leave_type = Column(Integer, default=Types.TEXT.value)
+    leave_type = Column(BigInteger, default=Types.TEXT.value)
 
     clean_welcome = Column(BigInteger)
 
@@ -67,7 +69,7 @@ class Welcome(BASE):
 
 class WelcomeButtons(BASE):
     __tablename__ = "welcome_urls"
-    id = Column(Integer, primary_key=True, autoincrement=True)
+    id = Column(BigInteger, primary_key=True, autoincrement=True)
     chat_id = Column(String(14), primary_key=True)
     name = Column(UnicodeText, nullable=False)
     url = Column(UnicodeText, nullable=False)
@@ -82,7 +84,7 @@ class WelcomeButtons(BASE):
 
 class GoodbyeButtons(BASE):
     __tablename__ = "leave_urls"
-    id = Column(Integer, primary_key=True, autoincrement=True)
+    id = Column(BigInteger, primary_key=True, autoincrement=True)
     chat_id = Column(String(14), primary_key=True)
     name = Column(UnicodeText, nullable=False)
     url = Column(UnicodeText, nullable=False)
@@ -133,7 +135,7 @@ class DefenseMode(BASE):
 class AutoKickSafeMode(BASE):
     __tablename__ = "autokicks_safemode"
     chat_id = Column(String(14), primary_key=True)
-    timeK = Column(Integer, default=90)
+    timeK = Column(BigInteger, default=90)
     
     def __init__(self, chat_id, timeK):
         self.chat_id = str(chat_id)
@@ -143,7 +145,7 @@ class AutoKickSafeMode(BASE):
 
 class WelcomeMuteUsers(BASE):
     __tablename__ = "human_checks"
-    user_id = Column(Integer, primary_key=True)
+    user_id = Column(BigInteger, primary_key=True)
     chat_id = Column(String(14), primary_key=True)
     human_check = Column(Boolean)
 
