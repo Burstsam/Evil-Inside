@@ -1,14 +1,14 @@
 import threading
 
-from sqlalchemy import Column, UnicodeText, Integer, String, Boolean
+from sqlalchemy import Column, UnicodeText, Biginteger, String, Boolean
 
 from tg_bot.modules.sql import BASE, SESSION
 
 class GloballyKickedUsers(BASE):
     __tablename__ = "gkicks"
-    user_id = Column(Integer, primary_key=True)
+    user_id = Column(Biginteger, primary_key=True)
     name = Column(UnicodeText, nullable=False)
-    times = Column(Integer)
+    times = Column(Biginteger)
     
     def __init__(self, user_id, name, times):
         self.user_id = user_id
