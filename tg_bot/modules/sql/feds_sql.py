@@ -1,6 +1,6 @@
 import threading
 
-from sqlalchemy import Column, String, UnicodeText, func, distinct, Integer, Boolean
+from sqlalchemy import Column, String, UnicodeText, func, distinct, Biginteger, Boolean
 
 from tg_bot.modules.sql import SESSION, BASE
 
@@ -48,7 +48,7 @@ class BansF(BASE):
 
 class FedsUserSettings(BASE):
 	__tablename__ = "feds_settings"
-	user_id = Column(Integer, primary_key=True)
+	user_id = Column(Biginteger, primary_key=True)
 	should_report = Column(Boolean, default=True)
 
 	def __init__(self, user_id):
