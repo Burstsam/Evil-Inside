@@ -1,13 +1,13 @@
 import threading
 
-from sqlalchemy import Column, UnicodeText, Integer
+from sqlalchemy import Column, UnicodeText, Biginteger
 
 from tg_bot.modules.sql import BASE, SESSION
 
 
 class RSS(BASE):
     __tablename__ = "rss_feed"
-    id = Column(Integer, primary_key=True)
+    id = Column(Biginteger, primary_key=True)
     chat_id = Column(UnicodeText, nullable=False)
     feed_link = Column(UnicodeText)
     old_entry_link = Column(UnicodeText)
